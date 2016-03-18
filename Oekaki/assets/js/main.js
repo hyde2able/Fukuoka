@@ -10,12 +10,8 @@ $(function() {
         drag_flag = true;
         startX = e.pageX - $(this).position().left - offset;
         startY = e.pageY - $(this).position().top - offset;
-        console.log(startX, startY);
         return false;
     });
-
-    console.log($canvas.offset().left);
-    console.log($canvas.offset().top);
 
     //canvas上をドラッグ中
     $canvas.mousemove(function(e) {
@@ -30,7 +26,6 @@ $(function() {
         ctx.stroke();
         startX = endX;
         startY = endY;
-        console.log(endX, endY);
     });
 
     //canvas上からマウスが離れたら
@@ -48,6 +43,13 @@ $(function() {
     //クリアを押したらキャンバスを消す
     $("#clearButton").on("click", function() {
         ctx.clearRect(0, 0, $canvas.width(), $canvas.height());
+    });
+
+    //セーブを押したら画像にする
+    $("#saveButton").on("click", function() {
+        var data = $canvas[0].toDataURL("image/png");
+        data = data.replace("image/png", "image/octet-stream");
+        window.open(data, 'save');
     });
 
 });
