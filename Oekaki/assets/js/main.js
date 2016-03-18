@@ -51,11 +51,17 @@ $(function() {
         window.open(data, 'save');
     });
 
+    //ペンの太さ
+    $("#penWidth").on("change", function() {
+        ctx.lineWidth = $(this).val();
+        $("#showPenWidth").text(ctx.lineWidth + "px");
+    });
 
     //(x, y)に点を描画
     var putPoint = function(x, y) {
         ctx.beginPath();
-        ctx.arc(x, y, ctx.lineWidth / 2.0, 0, Math.PI*2, false);
+        ctx.arc(x, y, ctx.lineWidth / 3.0, 0, Math.PI*2, false);
+        ctx.stroke();
         ctx.closePath();
     }
     //(sx, sy)から(ex, ey)に線を描画
