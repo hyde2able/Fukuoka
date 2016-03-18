@@ -1,6 +1,7 @@
 $(function() {
     var $canvas = $("#myCanvas");
     var ctx = $canvas[0].getContext('2d');
+    ctx.lineWidth = 1;
     var drag_flag = false;
     var offset = 5;
     var startX, startY;
@@ -10,6 +11,7 @@ $(function() {
         drag_flag = true;
         startX = e.pageX - $(this).position().left - offset;
         startY = e.pageY - $(this).position().top - offset;
+        putPoint(startX, startY);
         return false;
     });
 
@@ -19,11 +21,8 @@ $(function() {
         var endX = e.pageX - $(this).position().left - offset;
         var endY = e.pageY - $(this).position().top - offset;
 
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(startX, startY);
-        ctx.lineTo(endX, endY);
-        ctx.stroke();
+        putPoint(endX, endY);
+        drawLine(startX, startY, endX, endY);
         startX = endX;
         startY = endY;
     });
@@ -51,5 +50,21 @@ $(function() {
         data = data.replace("image/png", "image/octet-stream");
         window.open(data, 'save');
     });
+
+
+    //(x, y)に点を描画
+    var putPoint = function(x, y) {
+        ctx.beginPath();
+        ctx.arc(x, y, ctx.lineWidth / 2.0, 0, Math.PI*2, false);
+        ctx.closePath();
+    }
+    //(sx, sy)から(ex, ey)に線を描画
+    var drawLine = function(sx, sy, ex, ey) {
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        ctx.closePath();
+    }
 
 });

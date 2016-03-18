@@ -3,13 +3,15 @@ body {
     padding-top: 30px;
 }
 .wrapper {
-    max-width: 1000px;
-    min-width: 700px;
+    width: 720px;
     margin: 0 auto;
 }
+header {
+    text-align: center;
+}
 .canvas_field {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     float: left;
     display: relative;
 }
@@ -19,7 +21,7 @@ body {
 }
 .sidebar {
     float: right;
-    width: 200px;
+    width: 190px;
     height: 500px;
     border: 1px solid #ccc;
     position: relative;
