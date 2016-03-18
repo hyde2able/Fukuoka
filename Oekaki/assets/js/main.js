@@ -43,4 +43,11 @@ $(function() {
         drag_flag = false;
     });
 
+    //色をクリックしたらその色に変更
+    $("#colorList li").on("click", function() {
+        var color = $(this).css("background-color");
+        ctx.strokeStyle = color;
+        $("#nowColor").css("background-color", color);
+    });
+
 });
