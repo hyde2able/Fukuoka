@@ -33,11 +33,6 @@ $(function() {
         console.log(endX, endY);
     });
 
-    ctx.beginPath();
-    ctx.moveTo(10, 20);
-    ctx.lineTo(30, 20);
-    ctx.stroke();
-
     //canvas上からマウスが離れたら
     $canvas.on('mouseup mouseout touchend touchcancel', function() {
         drag_flag = false;
@@ -48,6 +43,11 @@ $(function() {
         var color = $(this).css("background-color");
         ctx.strokeStyle = color;
         $("#nowColor").css("background-color", color);
+    });
+
+    //クリアを押したらキャンバスを消す
+    $("#clearButton").on("click", function() {
+        ctx.clearRect(0, 0, $canvas.width(), $canvas.height());
     });
 
 });
